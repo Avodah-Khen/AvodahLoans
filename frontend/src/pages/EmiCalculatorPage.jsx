@@ -1,75 +1,36 @@
 // pages/EmiCalculatorPage.jsx
 import EmiCalculator from "../EmiCalculator";
 import CalculatorTools from "../CalculatorTools";
+import CalculatorHero from "../CalculatorHero";
 
 export default function EmiCalculatorPage() {
   return (
-    <div style={{ minHeight: "80vh" }}>
-      {/* Page hero banner */}
-      <div
-        className="page-container-h"
-        style={{
-          background: "linear-gradient(135deg,#1a0800,#2d1200)",
-          padding: "64px 32px",
-          textAlign: "center",
-        }}
-      >
-        <h1
-          style={{
-            fontFamily: "'Sora', sans-serif",
-            fontSize: 44,
-            fontWeight: 800,
-            color: "white",
-            marginBottom: 16,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          EMI &amp; Financial Calculators
-        </h1>
-        <p
-          style={{
-            color: "rgba(255,255,255,.7)",
-            fontSize: 16,
-            maxWidth: 580,
-            margin: "0 auto",
-            lineHeight: 1.6,
-            fontWeight: 400,
-          }}
-        >
-          Plan your loan repayment, check eligibility and make smarter financial
-          decisions — all for free.
-        </p>
-      </div>
+    <div className="emi-page-wrapper">
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE FINANCIAL TOOLS"
+          badge2="INSTANT ESTIMATE"
+          titleDark="EMI & Financial"
+          titleAccent="Calculators"
+          description="Plan your loan repayment, check eligibility and make smarter financial decisions — all for free."
+          stats={[
+            ["100% Free", "No Hidden Charges"],
+            ["Instant Results", "Real-Time Updates"],
+            ["Multiple Loans", "Personal, Home & More"]
+          ]}
+        />
+      </section>
 
-      <div className="page-container-h" style={{
-        maxWidth: "1200px",
-        margin: "0 auto", 
-        padding: "0 32px",
-        display:"flex",
-        justifyContent: "center" 
-        }}>
-          <div style={{width: "100%"}}>
-            <EmiCalculator />
-      </div>
-      </div>
-      <div className="page-container-h" style={{
-        maxWidth: "1200px",
-        margin: "40px auto 0" ,
-        padding: "0 32px"
-        }}>
+      {/* ── Screen 2: Actual Calculator Interface ── */}
+      <section className="calc-section-screen">
+        <EmiCalculator />
+      </section>
+
+      {/* ── Screen 3: Calculator Tools ── */}
+      <section className="calc-section-screen">
         <CalculatorTools />
-      </div>
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 32px !important;
-          }
-          p {
-            font-size: 14px !important;
-          }
-        }
-      `}</style>
+      </section>
     </div>
   );
 }

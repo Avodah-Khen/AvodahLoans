@@ -21,55 +21,50 @@ export default function EmiCalculator() {
   };
 
   return (
-    <section className="section calc-section" style={{ padding: "48px 0", background: "#f8fafc" }}>
-      <div className="section-inner" style={{
-        maxWidth: "1120px",
-        margin: "0 auto",
-      }}>
+    <section className="section calc-section" style={{ width: "100%", padding: "clamp(8px, 1.5vh, 16px) 0", background: "transparent", boxSizing: "border-box" }}>
+      <div className="calc-container-wide">
         <h2 className="section-title" style={{
-          fontSize: "clamp(22px, 3.5vw, 30px)",
+          fontSize: "clamp(20px, 2.6vh, 28px)",
           fontWeight: "700",
-          marginBottom: "6px",
+          marginBottom: "clamp(4px, 0.6vh, 8px)",
           lineHeight: "1.2",
           color: "#0f172a",
-          letterSpacing: "-0.5px"
+          letterSpacing: "-0.5px",
+          textAlign: "center"
         }}>EMI Calculator</h2>
         <p className="section-sub" style={{
-          fontSize: "14px",
+          fontSize: "clamp(12px, 1.4vh, 14px)",
           color: "#64748b",
-          marginBottom: "24px",
-          maxWidth: "600px",
+          marginBottom: "clamp(12px, 1.6vh, 20px)",
+          maxWidth: "700px",
+          margin: "0 auto clamp(12px, 1.6vh, 20px)",
+          textAlign: "center",
           lineHeight: "1.5"
         }}>Instantly calculate your monthly EMI, total interest and plan your loan repayment.</p>
 
-        <div className="calc-wrapper" style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "18px",
-          alignItems: "stretch"
-        }}>
+        <div className="calc-wrapper">
           {/* ── Input side ── */}
           <div className="calc-box" style={{
             background: "#ffffff",
-            borderRadius: "18px",
-            padding: "clamp(18px, 2.5vw, 24px)",
+            borderRadius: "16px",
+            padding: "clamp(16px, 2.2vh, 24px) clamp(20px, 2.4vw, 32px)",
             boxShadow: "0 12px 24px -10px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.02)",
             border: "1px solid #e2e8f0",
             display: "flex",
             flexDirection: "column"
           }}>
-            <div className="calc-field" style={{ marginBottom: "18px" }}>
+            <div className="calc-field" style={{ marginBottom: "clamp(8px, 1.2vh, 13px)" }}>
               <div className="calc-field-label" style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                marginBottom: "8px",
-                fontSize: "12.5px",
+                marginBottom: "clamp(3px, 0.5vh, 6px)",
+                fontSize: "clamp(11px, 1.2vh, 12px)",
                 fontWeight: "500",
                 color: "#334155"
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <IndianRupee size={13} />
+                  <IndianRupee size={12} />
                   Loan Amount
                 </div>
                 <span style={{ fontWeight: "700", color: "#f97316" }}>{fmtINR(loanAmt)}</span>
@@ -85,18 +80,18 @@ export default function EmiCalculator() {
                   ...rangeStyle(loanAmt, 100000, 10000000)
                 }} />
             </div>
-            <div className="calc-field" style={{ marginBottom: "18px" }}>
+            <div className="calc-field" style={{ marginBottom: "clamp(8px, 1.2vh, 13px)" }}>
               <div className="calc-field-label" style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                marginBottom: "8px",
-                fontSize: "12.5px",
+                marginBottom: "clamp(3px, 0.5vh, 6px)",
+                fontSize: "clamp(11px, 1.2vh, 12px)",
                 fontWeight: "500",
                 color: "#334155"
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <Percent size={13} />
+                  <Percent size={12} />
                   Interest Rate
                 </div>
                 <span style={{ fontWeight: "700", color: "#f97316" }}>{rate.toFixed(1)}%</span>
@@ -112,18 +107,18 @@ export default function EmiCalculator() {
                   ...rangeStyle(rate, 6, 20)
                 }} />
             </div>
-            <div className="calc-field" style={{ marginBottom: "20px" }}>
+            <div className="calc-field" style={{ marginBottom: "clamp(10px, 1.4vh, 16px)" }}>
               <div className="calc-field-label" style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                marginBottom: "8px",
-                fontSize: "12.5px",
+                marginBottom: "clamp(3px, 0.5vh, 6px)",
+                fontSize: "clamp(11px, 1.2vh, 12px)",
                 fontWeight: "500",
                 color: "#334155"
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                  <Calendar size={13} />
+                  <Calendar size={12} />
                   Loan Tenure
                 </div>
                 <span style={{ fontWeight: "700", color: "#f97316" }}>{tenure} Years</span>
@@ -141,13 +136,13 @@ export default function EmiCalculator() {
             </div>
             <button className="btn-solid" style={{
               width: "100%",
-              height: 44,
+              height: "clamp(34px, 4.2vh, 40px)",
               marginTop: "auto",
               background: "#f97316",
               color: "#ffffff",
               border: "none",
-              borderRadius: "12px",
-              fontSize: "14px",
+              borderRadius: "10px",
+              fontSize: "clamp(12px, 1.4vh, 13.5px)",
               fontWeight: "600",
               display: "flex",
               alignItems: "center",
@@ -156,7 +151,7 @@ export default function EmiCalculator() {
               cursor: "pointer",
               transition: "all 0.2s ease"
             }}>
-              <TrendingUp size={15} />
+              <TrendingUp size={14} />
               Calculate EMI
             </button>
           </div>
@@ -164,32 +159,33 @@ export default function EmiCalculator() {
           {/* ── Result side ── */}
           <div className="calc-result" style={{
             background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-            borderRadius: "18px",
-            padding: "clamp(18px, 2.5vw, 24px)",
+            borderRadius: "16px",
+            padding: "clamp(16px, 2.2vh, 24px) clamp(20px, 2.4vw, 32px)",
             color: "#ffffff",
             boxShadow: "0 12px 24px -10px rgba(0,0,0,0.15)",
             display: "flex",
             flexDirection: "column"
           }}>
             <div className="result-label" style={{
-              fontSize: "11px",
+              fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "1px",
               opacity: "0.7",
-              marginBottom: "4px"
+              marginBottom: "2px"
             }}>Monthly EMI</div>
             <div className="result-emi" style={{
-              fontSize: "clamp(28px, 4vw, 38px)",
+              fontSize: "clamp(24px, 3.4vh, 34px)",
               fontWeight: "800",
-              marginBottom: "16px",
+              marginBottom: "clamp(8px, 1.2vh, 12px)",
               color: "#f97316",
-              letterSpacing: "-1px"
+              letterSpacing: "-1px",
+              lineHeight: 1.1
             }}>₹{Math.round(emi).toLocaleString("en-IN")}</div>
             <div className="result-grid" style={{
               display: "grid",
               gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "12px",
-              marginBottom: "18px"
+              gap: "clamp(6px, 1vh, 10px)",
+              marginBottom: "clamp(8px, 1.2vh, 12px)"
             }}>
               {[
                 ["Principal Amount", fmtINR(loanAmt), IndianRupee],
@@ -199,21 +195,21 @@ export default function EmiCalculator() {
               ].map(([label, val, Icon]) => (
                 <div className="result-item" key={label} style={{
                   borderBottom: "1px solid rgba(255,255,255,0.1)",
-                  paddingBottom: "8px"
+                  paddingBottom: "clamp(3px, 0.5vh, 6px)"
                 }}>
                   <div className="result-item-label" style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "5px",
-                    fontSize: "10px",
+                    gap: "4px",
+                    fontSize: "9.5px",
                     opacity: "0.7",
-                    marginBottom: "4px"
+                    marginBottom: "2px"
                   }}>
-                    {Icon && <Icon size={11} />}
+                    {Icon && <Icon size={10} />}
                     {label}
                   </div>
                   <div className="result-item-val" style={{
-                    fontSize: "14px",
+                    fontSize: "clamp(12px, 1.5vh, 13.5px)",
                     fontWeight: "700"
                   }}>{val}</div>
                 </div>
@@ -221,10 +217,10 @@ export default function EmiCalculator() {
             </div>
             <div className="pie-bar" style={{
               display: "flex",
-              height: "6px",
+              height: "5px",
               borderRadius: "10px",
               overflow: "hidden",
-              marginBottom: "10px",
+              marginBottom: "clamp(5px, 0.7vh, 8px)",
               background: "rgba(255,255,255,0.1)"
             }}>
               <div className="pie-principal" style={{ width: pPct + "%", background: "#f97316" }} />
@@ -232,15 +228,15 @@ export default function EmiCalculator() {
             </div>
             <div className="pie-legend" style={{
               display: "flex",
-              gap: "18px",
-              marginBottom: "18px"
+              gap: "14px",
+              marginBottom: "clamp(8px, 1.2vh, 12px)"
             }}>
-              <div className="legend-item" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px" }}>
-                <div className="legend-dot" style={{ width: "9px", height: "9px", borderRadius: "50%", background: "#f97316" }} />
+              <div className="legend-item" style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "10.5px" }}>
+                <div className="legend-dot" style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#f97316" }} />
                 <span>Principal</span>
               </div>
-              <div className="legend-item" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px" }}>
-                <div className="legend-dot" style={{ width: "9px", height: "9px", borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
+              <div className="legend-item" style={{ display: "flex", alignItems: "center", gap: "5px", fontSize: "10.5px" }}>
+                <div className="legend-dot" style={{ width: "8px", height: "8px", borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
                 <span>Interest</span>
               </div>
             </div>
@@ -250,9 +246,9 @@ export default function EmiCalculator() {
               background: "rgba(255,255,255,0.1)",
               border: "1px solid rgba(255,255,255,0.2)",
               color: "#ffffff",
-              padding: "12px",
-              borderRadius: "12px",
-              fontSize: "13px",
+              padding: "clamp(8px, 1vh, 10px)",
+              borderRadius: "10px",
+              fontSize: "clamp(11.5px, 1.3vh, 13px)",
               fontWeight: "600",
               display: "flex",
               alignItems: "center",
@@ -261,7 +257,7 @@ export default function EmiCalculator() {
               cursor: "pointer",
               transition: "all 0.2s ease"
             }}>
-              <CheckCircle size={15} />
+              <CheckCircle size={14} />
               Apply for This Loan →
             </button>
           </div>

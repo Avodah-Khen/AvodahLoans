@@ -8,7 +8,7 @@
   --acp-card-text: #1e293b;
   --acp-border: #eef0f4;
   --acp-white: #ffffff;
-  --acp-max-width: 1440px;
+  --acp-max-width: 1280px;
 }
 
 * {
@@ -22,7 +22,17 @@
   width: 100%;
   overflow: hidden;
   background-color: var(--acp-white);
-  padding: 72px 32px;
+  padding: clamp(16px, 2.5vh, 32px) 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 901px) {
+  .acp {
+    min-height: calc(100vh - 95px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 /* ============ DECORATIVE BLOBS ============ */
@@ -59,9 +69,12 @@
   z-index: 1;
   max-width: var(--acp-max-width);
   margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
   display: grid;
   grid-template-columns: 0.62fr 1fr;
-  gap: 60px;
+  gap: clamp(24px, 3.5vw, 48px);
   align-items: center;
 }
 
@@ -69,20 +82,21 @@
 .acp-image-col {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .acp-image-wrapper {
   position: relative;
   width: 100%;
   max-width: 420px;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
 }
 
 .acp-image {
   width: 100%;
-  height: 420px;
+  height: clamp(280px, 44vh, 400px);
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
@@ -99,11 +113,12 @@
 }
 
 .acp-heading {
-  font-size: 30px;
+  font-size: clamp(20px, 2.8vh, 28px);
   font-weight: 700;
   color: var(--acp-black);
-  margin: 0 0 16px;
+  margin: 0 0 clamp(4px, 0.7vh, 8px);
   letter-spacing: -0.3px;
+  line-height: 1.2;
 }
 
 .acp-heading-accent {
@@ -112,26 +127,26 @@
 }
 
 .acp-description {
-  font-size: 15.5px;
-  line-height: 1.6;
+  font-size: clamp(12.5px, 1.4vh, 14px);
+  line-height: 1.45;
   color: var(--acp-gray-text);
-  margin: 0 0 24px;
-  max-width: 520px;
+  margin: 0 0 clamp(8px, 1.2vh, 14px);
+  max-width: 540px;
 }
 
 /* ============ TABS ============ */
 .acp-tabs {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: clamp(8px, 1.2vh, 14px);
   flex-wrap: wrap;
 }
 
 .acp-tab {
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: clamp(11.5px, 1.3vh, 13px);
   font-weight: 700;
-  padding: 12px 22px;
+  padding: clamp(6px, 0.8vh, 8px) clamp(14px, 1.4vw, 18px);
   border-radius: 999px;
   border: 1.5px solid #e5e7eb;
   background-color: var(--acp-white);
@@ -151,45 +166,45 @@
   background-color: var(--acp-purple);
   border-color: var(--acp-purple);
   color: var(--acp-white);
-  box-shadow: 0 8px 16px rgba(124, 58, 237, 0.28);
+  box-shadow: 0 6px 14px rgba(124, 58, 237, 0.25);
 }
 
 /* ============ BENEFIT CARDS ============ */
 .acp-cards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(5px, 0.8vh, 8px);
 }
 
 .acp-card {
   background-color: var(--acp-white);
   border: 1px solid var(--acp-border);
-  border-radius: 12px;
-  padding: 18px 24px;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+  border-radius: 9px;
+  padding: clamp(7px, 1vh, 10px) clamp(14px, 1.5vw, 18px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
   transition: transform 0.25s ease, box-shadow 0.25s ease,
     border-color 0.25s ease;
 }
 
 .acp-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.1);
   border-color: var(--acp-purple-light);
 }
 
 .acp-card-text {
   margin: 0;
-  font-size: 15px;
+  font-size: clamp(12px, 1.4vh, 13.5px);
   font-weight: 500;
   color: var(--acp-card-text);
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
   .acp-container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 28px;
   }
 
   .acp-image-col {
@@ -201,8 +216,12 @@
   }
 
   .acp-image-wrapper {
-    max-width: 480px;
+    max-width: 440px;
     margin: 0 auto;
+  }
+
+  .acp-image {
+    height: 260px;
   }
 
   .acp-blob-top {
@@ -218,40 +237,38 @@
 
 @media (max-width: 768px) {
   .acp {
+    padding: 32px 0;
+  }
+  .acp-container {
     padding-left: 16px;
     padding-right: 16px;
   }
 }
 
 @media (max-width: 640px) {
-  .acp {
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
-
   .acp-heading {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .acp-description {
-    font-size: 14.5px;
+    font-size: 13.5px;
   }
 
   .acp-image {
-    height: 300px;
+    height: 220px;
   }
 
   .acp-tab {
-    font-size: 12.5px;
-    padding: 10px 16px;
+    font-size: 12px;
+    padding: 7px 14px;
   }
 
   .acp-card {
-    padding: 14px 18px;
+    padding: 10px 14px;
   }
 
   .acp-card-text {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .acp-blob {

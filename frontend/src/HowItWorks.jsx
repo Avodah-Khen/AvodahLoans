@@ -82,10 +82,11 @@ const HowItWorks = () => {
     <section className="hiw">
       {/* ---------- Top Section: Steps ---------- */}
       <div className="hiw-top">
-        <p className="hiw-eyebrow">HOW IT WORKS</p>
-        <h2 className="hiw-heading">A Smarter Way to Build</h2>
+        <div className="hiw-top-container">
+          <p className="hiw-eyebrow">HOW IT WORKS</p>
+          <h2 className="hiw-heading">A Smarter Way to Build</h2>
 
-        <div className="hiw-steps">
+          <div className="hiw-steps">
           {STEPS.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -108,10 +109,12 @@ const HowItWorks = () => {
             );
           })}
         </div>
+        </div>
       </div>
 
       {/* ---------- Bottom Section: Speed & Efficiency ---------- */}
-      <div className="hiw-bottom">
+      <div className="hiw-bottom-wrapper">
+        <div className="hiw-bottom">
         <div className="hiw-bottom-image-wrapper">
           <img
             src={PLACEHOLDER_IMAGE}
@@ -141,6 +144,7 @@ const HowItWorks = () => {
             })}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

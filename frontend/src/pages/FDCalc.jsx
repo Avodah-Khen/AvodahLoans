@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Home, PiggyBank, Calculator, TrendingUp, ChevronDown, ChevronUp, Building2, CircleHelp, IndianRupee, Calendar, Percent } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const banks = [
   { name: "SBI", logo: "SBI", rate: "6.75%", min: "6.75%", amount: "No Limit", color: "#22488C", tenure: "7 days - 10 yrs" },
@@ -11,10 +12,9 @@ const banks = [
 
 const faqs = [
   { q: "What is a Fixed Deposit?", a: "A Fixed Deposit (FD) is a financial instrument where you deposit a lump sum amount for a fixed tenure at a predetermined interest rate. The interest is compounded quarterly and paid at maturity." },
-  { q: "How is FD interest calculated?", a: "FD interest is calculated using compound interest formula: Maturity Amount = P × (1 + r/n)^(n×t), where P = principal, r = annual rate, n = compounding frequency, t = tenure in years." },
   { q: "What factors affect FD returns?", a: "Your FD returns are affected by principal amount, interest rate, tenure period, compounding frequency, and whether you choose cumulative or non-cumulative payout options." },
   { q: "Can I break my FD prematurely?", a: "Yes, most banks allow premature FD withdrawal but charge a penalty (usually 0.5-1% on the applicable rate). This reduces your effective returns." },
-  { q: "Is UpnaLoan FD calculator accurate?", a: "Yes. Our calculator uses the standard compound interest formula with quarterly compounding as per RBI guidelines. Results are accurate for informational purposes only." },
+  { q: "Is AvodahLoans FD calculator accurate?", a: "Yes. Our calculator uses the standard compound interest formula with quarterly compounding as per RBI guidelines. Results are accurate for informational purposes only." },
 ];
 
 function formatINR(val) {
@@ -118,62 +118,37 @@ export default function FDCalc() {
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
 
-      {/* HERO SECTION - simplified, no navbar */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)", 
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom:"1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>INSTANT RESULT</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800,
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" 
-            }}>
-              <span style={{color : "#111827"}}>Fixed Deposit{" "}</span>
-           <span style={{color: "#f97316"}}>Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your FD maturity amount and interest earnings instantly. Compare rates across banks and maximize your investment returns.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["No Limit", "Max Amount"], ["6.75%", "Starting Rate"], ["10 Years", "Max Tenure"], ["Quarterly", "Compounding"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          titleDark="Fixed Deposit"
+          titleAccent="Calculator"
+          description="Calculate your FD maturity amount and interest earnings instantly. Compare rates across banks and maximize your investment returns."
+          stats={[
+            ["No Limit", "Max Amount"],
+            ["6.75%", "Starting Rate"],
+            ["10 Years", "Max Tenure"],
+            ["Quarterly", "Compounding"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "8px clamp(16px, 3vw, 32px)", width: "100%", boxSizing: "border-box" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8", display: "inline-flex", alignItems: "center", gap: 4 }}><Home size={12} /> Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>/</span>
         <span style={{ fontSize: 12, color: "#94a3b8", display: "inline-flex", alignItems: "center", gap: 4 }}><PiggyBank size={12} /> Investments</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>/</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 4 }}><Calculator size={12} /> Fixed Deposit Calculator</span>
+        </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
+      <div className="calc-screen-body page-container-h">
         {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
@@ -237,9 +212,14 @@ export default function FDCalc() {
             </button>
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: Bank Offers ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* Bank Offers */}
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 0 }}>
           <h3 style={{ fontSize: "clamp(20px, 5vw, 24px)", fontWeight: 700, color: "#1e293b", marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><Building2 size={22} /> Current FD Rates</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 3vw, 24px)" }}>
             {banks.map((bank, index) => (
@@ -268,9 +248,14 @@ export default function FDCalc() {
             ))}
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 4: Frequently Asked Questions ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* FAQ Section */}
-        <div style={{ marginTop: 48, marginBottom: 0 }}>
+        <div style={{ marginTop: 0, marginBottom: 0 }}>
           <h3 style={{ fontSize: "clamp(20px, 5vw, 24px)", fontWeight: 700, color: "#1e293b", marginBottom: 24, display: "flex", alignItems: "center", gap: 8 }}><CircleHelp size={22} /> Frequently Asked Questions</h3>
           <div style={{ display: "grid", gap: 16 }}>
             {faqs.map((faq, index) => {
@@ -295,6 +280,7 @@ export default function FDCalc() {
           </div>
         </div>
       </div>
+      </section>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const gstRates = [
   { name: "Essential Goods", rate: "0%", category: "Unbranded Atta, Dal, Salt", color: "#16a34a" },
@@ -12,10 +13,9 @@ const gstRates = [
 
 const faqs = [
   { q: "What is GST?", a: "GST (Goods and Services Tax) is a comprehensive indirect tax on manufacture, sale and consumption of goods and services throughout India, replacing multiple indirect taxes." },
-  { q: "How is GST calculated?", a: "GST is calculated as: GST Amount = Original Amount × GST Rate / 100. For inclusive GST: Original Amount = Total Amount / (1 + GST Rate/100)." },
   { q: "What are GST tax slabs?", a: "GST has 4 main tax slabs: 5% for essential items, 12% for standard goods, 18% for services and luxury items, and 28% for premium goods and sin goods." },
   { q: "What is the difference between CGST and SGST?", a: "CGST (Central GST) and SGST (State GST) are components of GST. Both are equal to half of the total GST rate. CGST goes to central government, SGST to state government." },
-  { q: "Is UpnaLoan GST calculator accurate?", a: "Yes. Our calculator uses standard GST calculation formulas and current tax rates. Results are accurate for all GST calculations and tax planning." },
+  { q: "Is AvodahLoans GST calculator accurate?", a: "Yes. Our calculator uses standard GST calculation formulas and current tax rates. Results are accurate for all GST calculations and tax planning." },
 ];
 
 function formatINR(val) {
@@ -125,67 +125,42 @@ export default function GSTCalc() {
   };
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>INSTANT CALC</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800, 
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-              <span style={{color: "#111827"}}> GST{" "} </span>
-           <span style={{color:"#f97316"}}>Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate GST amounts instantly for goods and services. Support for exclusive and inclusive GST calculations with current tax rates.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["28%", "Max GST Rate"], ["4 Slabs", "Tax Structure"], ["CGST+SGST", "Split"], ["Instant", "Results"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          titleDark="GST"
+          titleAccent="Calculator"
+          description="Calculate GST amount instantly for goods and services. Check CGST, SGST, and IGST breakdowns for inclusive and exclusive GST rates."
+          stats={[
+            ["0%, 5%, 12%", "GST Slabs"],
+            ["18%, 28%", "Higher Slabs"],
+            ["Instant", "Tax Breakup"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "6px clamp(16px, 3vw, 32px)" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Tax Tools</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>GST Calculator</span>
+              </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
-        {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+      {/* CALCULATOR SECTION */}
+      <div className="calc-screen-body page-container-h">
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 24px" }}>GST Details</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 clamp(8px, 1.2vh, 14px)" }}>GST Details</h2>
             
             <div style={{ marginBottom: 24 }}>
               <label style={{ fontSize: 13, color: "#64748b", fontWeight: 500, marginBottom: 8, display: "block" }}>Calculation Type</label>
@@ -299,9 +274,14 @@ export default function GSTCalc() {
             </div>
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: GST Rates ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* GST RATES */}
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
               <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: 0 }}>GST Tax Slabs</h2>
@@ -334,8 +314,14 @@ export default function GSTCalc() {
           </div>
         </div>
 
+              </div>
+      </section>
+
+      {/* ── Screen 4: Quick Links & Why Choose Us ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* QUICK LINKS */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0, marginBottom: 32 }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 18px" }}>Quick Links</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
             {[
@@ -386,8 +372,14 @@ export default function GSTCalc() {
           </div>
         </div>
 
+              </div>
+      </section>
+
+      {/* ── Screen 5: Information & Frequently Asked Questions ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* INFO SECTIONS */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(20px, 4vw, 32px)", marginTop: 48 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(20px, 4vw, 32px)", marginTop: 0 }}>
           {[
             ["What is GST?", "GST (Goods and Services Tax) is a comprehensive indirect tax levied on the supply of goods and services in India. It replaced multiple cascading taxes like VAT, excise duty, and service tax, creating a unified tax system."],
             ["How to Calculate GST?", "For exclusive GST: GST Amount = (Original Cost × GST Rate) / 100. For inclusive GST: Original Cost = Total Amount / (1 + GST Rate/100). Use our calculator for instant, error-free results."],
@@ -450,6 +442,8 @@ export default function GSTCalc() {
           </div>
         </div>
       </div>
+
+            </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

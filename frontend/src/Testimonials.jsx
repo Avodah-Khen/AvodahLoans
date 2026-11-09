@@ -15,7 +15,7 @@ const testimonials = [
   {
     initials: "AM", avatarBg: "#fefce8", avatarColor: "#eab308",
     name: "Amit Mehta", city: "Thane, Maharashtra", rating: 5,
-    text: "The EMI calculator and bank comparison tools are genuinely useful. I saved ₹3.2 lakh in interest by switching to the bank UpnaLoans recommended.",
+    text: "The EMI calculator and bank comparison tools are genuinely useful. I saved ₹3.2 lakh in interest by switching to the bank AvodahLoans recommended.",
   },
 ];
 

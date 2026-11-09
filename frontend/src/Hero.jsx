@@ -98,6 +98,19 @@ export default function Hero() {
         .hero {
           background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
           padding: 60px 0 40px;
+          box-sizing: border-box;
+        }
+
+        @media (min-width: 901px) {
+          .hero {
+            min-height: calc(100vh - 95px);
+            display: flex;
+            align-items: center;
+            padding: 24px 0;
+          }
+          .hero-container {
+            width: 100%;
+          }
         }
 
         .hero-container {

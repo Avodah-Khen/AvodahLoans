@@ -53,7 +53,7 @@ const AboutCompareProjects = () => {
   const activeBenefits = BENEFITS[activeTab];
 
   return (
-    <section className="acp">
+    <section className="acp" id="about-section">
       {/* Decorative blurred background circles */}
       <div className="acp-blob acp-blob-top" aria-hidden="true" />
       <div className="acp-blob acp-blob-bottom" aria-hidden="true" />

@@ -32,11 +32,11 @@ const faqs = [
     a: "Typically: PAN card, Aadhaar, last 3 months salary slips (salaried) or 2 years ITR (self-employed), last 6 months bank statement, and property documents. Requirements vary by lender.",
   },
   {
-    q: "Is UpnaLoans a direct lender?",
+    q: "Is AvodahLoans a direct lender?",
     a: "No — we are a loan comparison and facilitation platform. We partner with 50+ banks and NBFCs and help you find the best offer. You apply through us and the lender disburses directly.",
   },
   {
-    q: "Are there any charges for using UpnaLoans?",
+    q: "Are there any charges for using AvodahLoans?",
     a: "Our service is completely free for borrowers. We are compensated by lenders when a loan is disbursed. There are zero hidden charges from our side.",
   },
   {
@@ -101,386 +101,454 @@ export default function Support() {
   return (
     <div
       style={{
-        minHeight: "80vh",
         background: "#fafaf8",
         boxSizing: "border-box",
+        width: "100%",
       }}
     >
-      {/* Header */}
-      <div
-        className="page-container-h"
-        style={{
-          background: "linear-gradient(135deg,#1a0800,#2d1200)",
-          padding: "60px 32px",
-          textAlign: "center",
-        }}
-      >
-
-        <h1
-          style={{
-            fontFamily: "'Sora',sans-serif",
-            fontSize: 36,
-            fontWeight: 700,
-            color: "white",
-            marginBottom: 14,
-          }}
-        >
-          Support & Help
-        </h1>
-
-        <p
-          style={{
-            color: "rgba(255,255,255,.65)",
-            fontSize: 15,
-            maxWidth: 480,
-            margin: "0 auto 30px",
-            lineHeight: 1.7,
-          }}
-        >
-          Find answers to common questions or connect with our team directly.
-        </p>
-
-        {/* Search */}
+      {/* ── Screen 1: Support Hero & Help Topics ── */}
+      <section className="calc-hero-screen" style={{ width: "100%" }}>
+        {/* Header */}
         <div
           style={{
-            maxWidth: 520,
-            margin: "0 auto",
-            position: "relative",
+            background: "#1C0D38",
+            padding: "clamp(16px, 2.4vh, 32px) 0",
+            textAlign: "center",
+            width: "100%",
           }}
         >
-          <Search
-            size={18}
-            style={{
-              position: "absolute",
-              left: 16,
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#78716c",
-            }}
-          />
-
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search your question..."
-            style={{
-              width: "100%",
-              height: 52,
-              borderRadius: 12,
-              border: "none",
-              outline: "none",
-              paddingLeft: 46,
-              paddingRight: 16,
-              fontSize: 15,
-              fontFamily: "'DM Sans',sans-serif",
-              color: "#1c1108",
-              boxSizing: "border-box",
-              boxShadow: "0 6px 24px rgba(0,0,0,.25)",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Body */}
-      <div
-        className="page-container-h"
-        style={{
-          padding: "60px 32px",
-          maxWidth: 1100,
-          margin: "0 auto",
-          boxSizing: "border-box",
-        }}
-      >
-        {/* Topics */}
-        <h2
-          style={{
-            fontFamily: "'Sora',sans-serif",
-            fontSize: 24,
-            fontWeight: 700,
-            color: "#1a0800",
-            marginBottom: 24,
-          }}
-        >
-          Browse by Topic
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: 18,
-            marginBottom: 60,
-          }}
-        >
-          {helpTopics.map((t) => (
-            <div
-              key={t.title}
+          <div className="page-container-h">
+            <h1
               style={{
-                background: "white",
-                borderRadius: 14,
-                border: "1.5px solid #fed7aa",
-                padding: "22px",
-                cursor: "pointer",
-                transition: "all .2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#f97316";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 24px rgba(249,115,22,.12)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#fed7aa";
-                e.currentTarget.style.transform = "";
-                e.currentTarget.style.boxShadow = "none";
+                fontFamily: "'Sora',sans-serif",
+                fontSize: "clamp(26px, 3.2vh, 36px)",
+                fontWeight: 700,
+                color: "white",
+                marginBottom: "clamp(4px, 0.8vh, 10px)",
+                lineHeight: 1.2,
               }}
             >
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: 12,
-                  background: t.color,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: 14,
-                  color: "#f97316",
-                }}
-              >
-                {t.icon}
-              </div>
+              Support & Help
+            </h1>
 
-              <h3
-                style={{
-                  fontFamily: "'Sora',sans-serif",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  color: "#1a0800",
-                  marginBottom: 6,
-                }}
-              >
-                {t.title}
-              </h3>
+            <p
+              style={{
+                color: "rgba(255,255,255,.65)",
+                fontSize: "clamp(13px, 1.4vh, 15px)",
+                maxWidth: 480,
+                margin: "0 auto clamp(12px, 1.8vh, 22px)",
+                lineHeight: 1.6,
+              }}
+            >
+              Find answers to common questions or connect with our team directly.
+            </p>
 
-              <p
+            {/* Search */}
+            <div
+              style={{
+                maxWidth: 520,
+                margin: "0 auto",
+                position: "relative",
+              }}
+            >
+              <Search
+                size={18}
                 style={{
-                  fontSize: 13,
+                  position: "absolute",
+                  left: 16,
+                  top: "50%",
+                  transform: "translateY(-50%)",
                   color: "#78716c",
-                  lineHeight: 1.6,
                 }}
-              >
-                {t.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+              />
 
-        {/* FAQ */}
-        <h2
-          style={{
-            fontFamily: "'Sora',sans-serif",
-            fontSize: 24,
-            fontWeight: 700,
-            color: "#1a0800",
-            marginBottom: 10,
-          }}
-        >
-          Frequently Asked Questions
-        </h2>
-
-        <p
-          style={{
-            fontSize: 14,
-            color: "#78716c",
-            marginBottom: 28,
-          }}
-        >
-          {search
-            ? `${filtered.length} result${
-                filtered.length !== 1 ? "s" : ""
-              } for "${search}"`
-            : `${faqs.length} questions answered`}
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            maxWidth: 780,
-          }}
-        >
-          {filtered.map((f, i) => (
-            <div
-              key={i}
-              style={{
-                background: "white",
-                borderRadius: 14,
-                border: `1.5px solid ${
-                  open === i ? "#f97316" : "#fed7aa"
-                }`,
-                overflow: "hidden",
-              }}
-            >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search your question..."
                 style={{
                   width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "18px 22px",
-                  background: "none",
+                  height: "clamp(42px, 5vh, 48px)",
+                  borderRadius: 12,
                   border: "none",
+                  outline: "none",
+                  paddingLeft: 46,
+                  paddingRight: 16,
+                  fontSize: 14,
+                  fontFamily: "'DM Sans',sans-serif",
+                  color: "#1c1108",
+                  boxSizing: "border-box",
+                  boxShadow: "0 6px 24px rgba(0,0,0,.25)",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="calc-screen-body page-container-h"
+          style={{
+            padding: "clamp(12px, 1.8vh, 24px) 32px",
+            maxWidth: 1280,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
+          {/* Topics */}
+          <h2
+            style={{
+              fontFamily: "'Sora',sans-serif",
+              fontSize: "clamp(18px, 2.2vh, 22px)",
+              fontWeight: 700,
+              color: "#1a0800",
+              marginBottom: "clamp(8px, 1.2vh, 16px)",
+            }}
+          >
+            Browse by Topic
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gap: "clamp(10px, 1.4vh, 16px)",
+              marginBottom: 0,
+            }}
+          >
+            {helpTopics.map((t) => (
+              <div
+                key={t.title}
+                style={{
+                  background: "white",
+                  borderRadius: 14,
+                  border: "1.5px solid #fed7aa",
+                  padding: "clamp(12px, 1.6vh, 18px)",
                   cursor: "pointer",
-                  textAlign: "left",
-                  gap: 12,
+                  transition: "all .2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#f97316";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 24px rgba(249,115,22,.12)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "#fed7aa";
+                  e.currentTarget.style.transform = "";
+                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                <span
+                <div
                   style={{
-                    fontFamily: "'Sora',sans-serif",
-                    fontSize: 15,
-                    fontWeight: 600,
-                    color: "#1a0800",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {f.q}
-                </span>
-
-                <span
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: "50%",
+                    width: "clamp(36px, 4vh, 42px)",
+                    height: "clamp(36px, 4vh, 42px)",
+                    borderRadius: 10,
+                    background: t.color,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    background:
-                      open === i
-                        ? "linear-gradient(135deg,#f97316,#eab308)"
-                        : "#fff7ed",
-                    color: open === i ? "white" : "#f97316",
+                    marginBottom: "clamp(6px, 0.8vh, 10px)",
+                    color: "#f97316",
                   }}
                 >
-                  {open === i ? <Minus size={16} /> : <Plus size={16} />}
-                </span>
-              </button>
-
-              {open === i && (
-                <div
-                  style={{
-                    padding: "0 22px 20px",
-                    fontSize: 14,
-                    color: "#57534e",
-                    lineHeight: 1.75,
-                  }}
-                >
-                  {f.a}
+                  {t.icon}
                 </div>
-              )}
-            </div>
-          ))}
 
-          {filtered.length === 0 && (
-            <div
-              style={{
-                textAlign: "center",
-                padding: "40px 20px",
-                color: "#78716c",
-              }}
-            >
-              <HelpCircle size={48} style={{ marginBottom: 16 }} />
-              <p>
-                No results found for "<strong>{search}</strong>". Try different
-                keywords or{" "}
-                <span style={{ color: "#f97316", cursor: "pointer" }}>
-                  contact us
-                </span>
-                .
-              </p>
-            </div>
-          )}
+                <h3
+                  style={{
+                    fontFamily: "'Sora',sans-serif",
+                    fontSize: 14,
+                    fontWeight: 600,
+                    color: "#1a0800",
+                    marginBottom: 4,
+                  }}
+                >
+                  {t.title}
+                </h3>
+
+                <p
+                  style={{
+                    fontSize: 12.5,
+                    color: "#78716c",
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {t.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* CTA */}
+      {/* ── Screen 2: Frequently Asked Questions ── */}
+      <section
+        id="faq-section"
+        className="faq-section-screen calc-section-screen"
+        style={{
+          minHeight: "calc(100vh - 95px)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          width: "100%",
+          padding: "clamp(10px, 1.5vh, 20px) 0",
+          boxSizing: "border-box",
+        }}
+      >
         <div
+          className="page-container-h"
           style={{
-            marginTop: 60,
-            background: "linear-gradient(135deg,#f97316,#eab308)",
-            borderRadius: 20,
-            padding: "48px 36px",
-            textAlign: "center",
+            maxWidth: 1280,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
           }}
         >
-          <h3
+          {/* FAQ */}
+          <h2
             style={{
               fontFamily: "'Sora',sans-serif",
-              fontSize: 26,
+              fontSize: "clamp(20px, 2.5vh, 26px)",
               fontWeight: 700,
-              color: "white",
-              marginBottom: 10,
+              color: "#1a0800",
+              marginBottom: "clamp(2px, 0.4vh, 4px)",
+              lineHeight: 1.2,
             }}
           >
-            Still need help?
-          </h3>
+            Frequently Asked Questions
+          </h2>
 
           <p
             style={{
-              color: "rgba(255,255,255,.9)",
-              fontSize: 15,
-              marginBottom: 28,
+              fontSize: "clamp(12px, 1.3vh, 13.5px)",
+              color: "#78716c",
+              marginBottom: "clamp(8px, 1.2vh, 14px)",
+              lineHeight: 1.3,
             }}
           >
-            Our loan advisors are available Mon–Sat, 9am–7pm to help you
-            personally.
+            {search
+              ? `${filtered.length} result${
+                  filtered.length !== 1 ? "s" : ""
+                } for "${search}"`
+              : `${faqs.length} questions answered`}
           </p>
 
           <div
             style={{
               display: "flex",
-              gap: 14,
-              justifyContent: "center",
-              flexWrap: "wrap",
+              flexDirection: "column",
+              gap: "clamp(5px, 0.7vh, 8px)",
+              maxWidth: 780,
+              width: "100%",
             }}
           >
-            <button
-              style={{
-                height: 48,
-                padding: "0 30px",
-                background: "#1a0800",
-                color: "white",
-                border: "none",
-                borderRadius: 10,
-                fontSize: 15,
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-            >
-              Call Us Now
-            </button>
+            {filtered.map((f, i) => (
+              <div
+                key={i}
+                style={{
+                  background: "white",
+                  borderRadius: 12,
+                  border: `1.5px solid ${
+                    open === i ? "#f97316" : "#fed7aa"
+                  }`,
+                  overflow: "hidden",
+                  transition: "border-color .2s",
+                }}
+              >
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "clamp(7px, 1vh, 10px) clamp(14px, 1.6vw, 20px)",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    gap: 12,
+                    boxSizing: "border-box",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Sora',sans-serif",
+                      fontSize: "clamp(13px, 1.5vh, 14.5px)",
+                      fontWeight: 600,
+                      color: "#1a0800",
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {f.q}
+                  </span>
 
-            <button
-              style={{
-                height: 48,
-                padding: "0 30px",
-                background: "rgba(255,255,255,.2)",
-                color: "white",
-                border: "2px solid rgba(255,255,255,.6)",
-                borderRadius: 10,
-                fontSize: 15,
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-            >
-              WhatsApp Us
-            </button>
+                  <span
+                    style={{
+                      width: "clamp(22px, 2.6vh, 26px)",
+                      height: "clamp(22px, 2.6vh, 26px)",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      background:
+                        open === i
+                          ? "linear-gradient(135deg,#f97316,#eab308)"
+                          : "#fff7ed",
+                      color: open === i ? "white" : "#f97316",
+                    }}
+                  >
+                    {open === i ? <Minus size={14} /> : <Plus size={14} />}
+                  </span>
+                </button>
+
+                {open === i && (
+                  <div
+                    style={{
+                      padding: "0 clamp(14px, 1.6vw, 20px) clamp(8px, 1.2vh, 14px)",
+                      fontSize: "clamp(12.5px, 1.4vh, 13.5px)",
+                      color: "#57534e",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {filtered.length === 0 && (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "30px 20px",
+                  color: "#78716c",
+                }}
+              >
+                <HelpCircle size={40} style={{ marginBottom: 12 }} />
+                <p>
+                  No results found for "<strong>{search}</strong>". Try different
+                  keywords or{" "}
+                  <span style={{ color: "#f97316", cursor: "pointer" }}>
+                    contact us
+                  </span>
+                  .
+                </p>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* ── Screen 3: Direct Contact CTA ── */}
+      <section
+        className="calc-section-screen"
+        style={{
+          minHeight: "calc(100vh - 95px)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          width: "100%",
+          padding: "clamp(24px, 4vh, 48px) 0",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          className="page-container-h"
+          style={{
+            maxWidth: 1280,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
+          {/* CTA */}
+          <div
+            style={{
+              background: "linear-gradient(135deg,#f97316,#eab308)",
+              borderRadius: 20,
+              padding: "clamp(32px, 5vh, 48px) clamp(24px, 4vw, 36px)",
+              textAlign: "center",
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "'Sora',sans-serif",
+                fontSize: 26,
+                fontWeight: 700,
+                color: "white",
+                marginBottom: 10,
+              }}
+            >
+              Still need help?
+            </h3>
+
+            <p
+              style={{
+                color: "rgba(255,255,255,.9)",
+                fontSize: 15,
+                marginBottom: 28,
+              }}
+            >
+              Our loan advisors are available Mon–Sat, 9am–7pm to help you
+              personally.
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: 14,
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <button
+                style={{
+                  height: 48,
+                  padding: "0 30px",
+                  background: "#1a0800",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 10,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                }}
+              >
+                Call Us Now
+              </button>
+
+              <button
+                style={{
+                  height: 48,
+                  padding: "0 30px",
+                  background: "rgba(255,255,255,.2)",
+                  color: "white",
+                  border: "2px solid rgba(255,255,255,.6)",
+                  borderRadius: 10,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                }}
+              >
+                WhatsApp Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .faq-section-screen {
+            min-height: auto !important;
+            padding: 24px 0 !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

@@ -6,7 +6,7 @@ export class AppController {
   getHealth() {
     return {
       success: true,
-      message: 'UPNA LOAN API is running',
+      message: 'AvodahLoans API is running',
     };
   }
 }

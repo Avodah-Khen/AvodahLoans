@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const banks = [
   { name: "SBI Home Loan", logo: "SBI", rate: "8.50%", min: "8.40%", amount: "Rs.5Cr", color: "#22488C", processing: "0.35%", tenure: "30 yrs", prepayment: "Nil charges" },
@@ -13,7 +14,7 @@ const faqs = [
   { q: "Are there prepayment charges on home loans?", a: "Most banks have waived prepayment charges for home loans, especially for floating rate loans. Fixed rate loans may have charges, but many banks allow partial prepayment without any fees." },
   { q: "How much can I save by prepaying my home loan?", a: "Savings depend on loan amount, interest rate, tenure, and timing of prepayment. Early prepayment saves more interest. Use our calculator to estimate your exact savings potential." },
   { q: "Should I reduce EMI or tenure for home loan?", a: "For home loans, reducing tenure is generally better as it saves more total interest due to the long tenure. However, reducing EMI provides monthly cash flow relief for better financial planning." },
-  { q: "Is the UpnaLoan home loan prepayment calculator accurate?", a: "Yes. Our calculator uses standard banking formulas and considers current RBI guidelines. Results help you make informed prepayment decisions for your home loan." },
+  { q: "Is the AvodahLoans home loan prepayment calculator accurate?", a: "Yes. Our calculator uses standard banking formulas and considers current RBI guidelines. Results help you make informed prepayment decisions for your home loan." },
 ];
 
 function formatINR(val) {
@@ -157,67 +158,44 @@ export default function HLPCalc() {
   };
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>ZERO CHARGES</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800,  
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-            <span style={{color:"#111827"}}>Home Loan{" "}</span> 
-            <span style={{color:"#f97316"}}>Prepayment Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your savings on home loan prepayment. Most banks offer zero prepayment charges. Save lakhs on interest and become debt-free faster.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["Rs.10 Cr", "Max Loan Amount"], ["8.50%", "Starting Interest Rate"], ["30 Years", "Max Tenure"], ["Zero Charges", "Prepayment Fees"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE TOOL"
+          badge2="SMART SAVINGS"
+          titleDark="Home Loan"
+          titleAccent="Prepayment Calculator"
+          description="Calculate how much interest and tenure you can save by prepaying your home loan. Compare reduce tenure vs reduce EMI options."
+          stats={[
+            ["Zero Penalty", "On Floating Rates"],
+            ["Save Lakhs", "In Total Interest"],
+            ["Instant", "Savings Analysis"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "6px clamp(16px, 3vw, 32px)" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home Loan</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>Prepayment Calculator</span>
+              </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
-        {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+      {/* CALCULATOR SECTION */}
+      <div className="calc-screen-body page-container-h">
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 24px" }}>Loan Details</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 clamp(8px, 1.2vh, 14px)" }}>Loan Details</h2>
             <SliderInput label="Loan Amount" value={loanAmount} min={100000} max={10000000} step={50000}
               onChange={setLoanAmount} prefix="₹" formatFn={v => formatINR(v)} />
             <SliderInput label="Rate of Interest (p.a.)" value={interestRate} min={6} max={12} step={0.25}
@@ -338,7 +316,13 @@ export default function HLPCalc() {
           </div>
         </div>
 
-        {/* BANK OFFERS */}
+        </div>
+      </section>
+
+      {/* ── Screen 3: Bank Offers ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
+      {/* BANK OFFERS */}
         <div style={{ marginTop: 48 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
@@ -388,8 +372,14 @@ export default function HLPCalc() {
           </div>
         </div>
 
+              </div>
+      </section>
+
+      {/* ── Screen 4: Quick Links & FAQ ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* QUICK LINKS */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0, marginBottom: 32 }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 18px" }}>Quick Links</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
             {[
@@ -463,6 +453,8 @@ export default function HLPCalc() {
           </div>
         </div>
       </div>
+
+            </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

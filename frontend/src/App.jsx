@@ -8,7 +8,9 @@ import Properties          from "./pages/Properties";
 import EmiCalculatorPage   from "./pages/EmiCalculatorPage";
 import Contact             from "./pages/Contact";
 import Support             from "./pages/Support";
+import Faq                 from "./pages/Faq";
 import UniversalCalculator  from "./UniversalCalculator";
+import AboutWorkSection    from "./AboutWorkSection";
 
 import PersonalLoanCalc from "./pages/PersonalLoanCalc";
 import BusinessLoanCalc from "./pages/BusinessLoanCalc";
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/emi-calculator" element={<EmiCalculatorPage />} />
         <Route path="/contact"        element={<Contact />} />
         <Route path="/support"        element={<Support />} />
+        <Route path="/faq"            element={<Faq />} />
+        <Route path="/about"          element={<AboutWorkSection />} />
         <Route path="/calculator"       element={<UniversalCalculator />} />
 
         <Route path="/calculator/personal-loan"

@@ -26,15 +26,27 @@ export default function CtaBanner() {
       <style>{`
         .cta-banner {
           width: 100%;
+          max-width: 1280px;
+          margin: 0 auto 60px;
+          padding: 0 32px;
           display: flex;
           justify-content: center;
-          margin-bottom: 80px;
+          box-sizing: border-box;
+        }
+
+        @media (min-width: 901px) {
+          .cta-banner {
+            min-height: calc(100vh - 95px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+          }
         }
 
         .cta-inner {
           width: 100%;
-          max-width: 1200px;
-          padding: 60px 32px;
+          padding: 56px 32px;
           border-radius: 16px;
           text-align: center;
           background: linear-gradient(135deg, #f97316, #eab308);
@@ -103,11 +115,12 @@ export default function CtaBanner() {
         /* Mobile */
         @media (max-width: 768px) {
           .cta-banner {
-            margin-bottom: 60px;
+            padding: 0 16px;
+            margin-bottom: 40px;
           }
 
           .cta-inner {
-            padding: 40px 16px;
+            padding: 36px 20px;
           }
 
           .cta-inner h2 {

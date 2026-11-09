@@ -79,7 +79,7 @@ export default function Contact() {
     {
       icon: <Mail size={17} />,
       label: "Email Us",
-      value: "info@upnaloans.com",
+      value: "info@avodahloans.com",
     },
     {
       icon: <MapPin size={17} />,
@@ -96,48 +96,50 @@ export default function Contact() {
   return (
     <div
       style={{
-        height: "100vh",
+        minHeight: "calc(100vh - 95px)",
         display: "flex",
         flexDirection: "column",
         background: "#fafaf8",
         boxSizing: "border-box",
-        overflow: "hidden",
+        width: "100%",
       }}
     >
       {/* Header */}
       <div
-        className="page-container-h"
         style={{
           flexShrink: 0,
-          background: "linear-gradient(135deg,#1a0800,#2d1200)",
-          padding: "22px 32px 20px",
+          background: "#1C0D38",
+          padding: "48px 0 36px",
           textAlign: "center",
+          width: "100%",
         }}
       >
-        <h1
-          style={{
-            fontFamily: "'Sora',sans-serif",
-            fontSize: 26,
-            fontWeight: 700,
-            color: "white",
-            margin: "0 0 6px",
-          }}
-        >
-          Contact Us
-        </h1>
+        <div className="page-container-h">
+          <h1
+            style={{
+              fontFamily: "'Sora',sans-serif",
+              fontSize: 32,
+              fontWeight: 700,
+              color: "white",
+              margin: "0 0 8px",
+            }}
+          >
+            Contact Us
+          </h1>
 
-        <p
-          style={{
-            color: "rgba(255,255,255,.65)",
-            fontSize: 13,
-            maxWidth: 480,
-            margin: "0 auto",
-            lineHeight: 1.5,
-          }}
-        >
-          Have questions about a loan? Our advisors are ready to help you get
-          the best deal.
-        </p>
+          <p
+            style={{
+              color: "rgba(255,255,255,.65)",
+              fontSize: 14,
+              maxWidth: 480,
+              margin: "0 auto",
+              lineHeight: 1.5,
+            }}
+          >
+            Have questions about a loan? Our advisors are ready to help you get
+            the best deal.
+          </p>
+        </div>
       </div>
 
       {/* Body */}
@@ -145,9 +147,8 @@ export default function Contact() {
         className="contact-body page-container-h"
         style={{
           flex: 1,
-          minHeight: 0,
-          padding: "20px 32px",
-          maxWidth: 1100,
+          padding: "40px 32px 60px",
+          maxWidth: 1280,
           width: "100%",
           margin: "0 auto",
           boxSizing: "border-box",

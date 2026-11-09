@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const schemes = [
   { name: "Post Office Time Deposit", rate: "6.90%", min: "1000", amount: "No Limit", color: "#1E3A5F", tenure: "1 yr - 5 yrs", compounding: "Quarterly" },
@@ -11,10 +12,9 @@ const schemes = [
 
 const faqs = [
   { q: "What is Post Office Fixed Deposit?", a: "Post Office Fixed Deposit is a government-backed savings scheme where you deposit money for a fixed tenure at guaranteed interest rates. It's considered one of the safest investment options in India." },
-  { q: "How is Post Office FD interest calculated?", a: "Post Office FD interest is calculated using compound interest formula with quarterly compounding: Maturity Amount = P × (1 + r/4)^(4×t), where P = principal, r = annual rate, t = tenure in years." },
   { q: "What are the benefits of Post Office FD?", a: "Post Office FD offers guaranteed returns, government backing, higher rates for senior citizens, tax benefits under Section 80C, and zero risk compared to market-linked investments." },
   { q: "Can I break Post Office FD prematurely?", a: "Yes, you can break Post Office FD prematurely but with a penalty. For 1-year TD, no withdrawal before 6 months. For 2-5 year TD, penalty of 2% interest if withdrawn before 1 year, 1% if after 1 year." },
-  { q: "Is UpnaLoan Post Office FD calculator accurate?", a: "Yes. Our calculator uses the official Post Office compound interest formula with quarterly compounding. Results are accurate for informational purposes only." },
+  { q: "Is AvodahLoans Post Office FD calculator accurate?", a: "Yes. Our calculator uses the official Post Office compound interest formula with quarterly compounding. Results are accurate for informational purposes only." },
 ];
 
 function formatINR(val) {
@@ -116,61 +116,39 @@ export default function PofdCalc() {
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>GOVT BACKED</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800, 
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-              <span style={{color:"#111827"}}>Post Office</span>
-              <span style={{color:"#f97316"}}>FD Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your Post Office Fixed Deposit returns with guaranteed government backing. Compare schemes and maximize your safe investment returns.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["No Limit", "Max Amount"], ["7.40%", "Highest Rate"], ["15 Years", "Max Tenure"], ["Quarterly", "Compounding"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE TOOL"
+          badge2="GOVT BACKED"
+          titleDark="Post Office"
+          titleAccent="FD Calculator"
+          description="Calculate your Post Office Fixed Deposit returns with guaranteed government backing. Compare schemes and maximize your safe investment returns."
+          stats={[
+            ["No Limit", "Max Amount"],
+            ["7.40%", "Highest Rate"],
+            ["15 Years", "Max Tenure"],
+            ["Quarterly", "Compounding"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "8px clamp(16px, 3vw, 32px)", width: "100%", boxSizing: "border-box" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Investments</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>Post Office FD Calculator</span>
+        </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
+      <div className="calc-screen-body page-container-h">
         {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
@@ -252,9 +230,14 @@ export default function PofdCalc() {
             </div>
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: Scheme Options & Quick Links ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* SCHEMES */}
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
               <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: 0 }}>Post Office Schemes</h2>
@@ -327,9 +310,14 @@ export default function PofdCalc() {
             ))}
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 4: Information & FAQ ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* WHY CHOOSE */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0 }}>
           <div style={{ textAlign: "center", marginBottom: 28 }}>
             <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: "0 0 6px" }}>Why Invest in Post Office FD?</h2>
             <p style={{ color: "#64748b", fontSize: 14, margin: 0 }}>India's most trusted small savings scheme</p>
@@ -416,6 +404,7 @@ export default function PofdCalc() {
           </div>
         </div>
       </div>
+      </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

@@ -91,15 +91,16 @@ const CATEGORIES = [
 const FinancialCategories = () => {
   return (
     <section className="fc">
-      <div className="fc-header">
-        <h2 className="fc-heading">Every Financial Need, One Platform</h2>
-        <p className="fc-subtitle">
-          From home loans to credit cards — compare, apply and get approved
-          across all categories.
-        </p>
-      </div>
+      <div className="fc-container">
+        <div className="fc-header">
+          <h2 className="fc-heading">Every Financial Need, One Platform</h2>
+          <p className="fc-subtitle">
+            From home loans to credit cards — compare, apply and get approved
+            across all categories.
+          </p>
+        </div>
 
-      <div className="fc-carousel-wrapper">
+        <div className="fc-carousel-wrapper">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={24}
@@ -168,6 +169,7 @@ const FinancialCategories = () => {
 
       {/* Pagination dots */}
       <div className="fc-pagination" />
+      </div>
     </section>
   );
 };

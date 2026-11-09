@@ -1,6 +1,7 @@
 // UniversalCalculator.jsx - Complete Responsive Calculator Component
 import { useState, useEffect } from "react";
 import { fmtINR } from "./styles";
+import CalculatorHero from "./CalculatorHero";
 
 // Calculator configurations
 const calculatorTypes = {
@@ -221,121 +222,120 @@ export default function UniversalCalculator() {
     : [];
 
   return (
-    <section style={{ 
-      padding: "80px 0", 
-      background: "white", 
-      position: "relative", 
-      overflow: "hidden" 
-    }}>
-      {/* Hero Section */}
-      <div style={{ 
-        padding: "0 32px", 
-        textAlign: "center", 
-        marginBottom: "60px" 
-      }}>
-        <h1 style={{ 
-          fontSize: "42px", 
-          fontWeight: "700", 
-          color: "#1a1a1a", 
-          marginBottom: "16px",
-          fontFamily: "'Sora', sans-serif"
-        }}>
-          {currentConfig.name}
-        </h1>
-        <p style={{ 
-          fontSize: "18px", 
-          color: "#666", 
-          lineHeight: "1.6",
-          maxWidth: "700px",
-          margin: "0 auto"
-        }}>
-          {calculatorType === "emi" && "Calculate your monthly EMI, total interest and plan your loan repayment with ease."}
-          {calculatorType === "eligibility" && "Check your loan eligibility based on your income and existing obligations."}
-          {calculatorType === "prepayment" && "Calculate savings on loan prepayment and make informed decisions."}
-          {calculatorType === "investment" && "Calculate returns on your investments and plan your financial goals."}
-          {calculatorType === "gst" && "Calculate GST amount instantly for any transaction."}
-        </p>
-      </div>
+    <div style={{ background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
+      {/* ── Screen 1: Calculator Hero & Selection ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE FINANCIAL TOOLS"
+          badge2="INSTANT RESULT"
+          titleDark={
+            currentConfig.name.includes(" ")
+              ? currentConfig.name.substring(0, currentConfig.name.lastIndexOf(" "))
+              : currentConfig.name
+          }
+          titleAccent={
+            currentConfig.name.includes(" ")
+              ? currentConfig.name.substring(currentConfig.name.lastIndexOf(" ") + 1)
+              : ""
+          }
+          description={
+            calculatorType === "emi" ? "Calculate your monthly EMI, total interest and plan your loan repayment with ease." :
+            calculatorType === "eligibility" ? "Check your loan eligibility based on your income and existing obligations." :
+            calculatorType === "prepayment" ? "Calculate savings on loan prepayment and make informed decisions." :
+            calculatorType === "investment" ? "Calculate returns on your investments and plan your financial goals." :
+            "Calculate GST amount instantly for any transaction."
+          }
+        >
+          {/* Calculator Type Selector */}
+          <div style={{ 
+            display: "flex",
+            gap: "16px",
+            flexWrap: "wrap",
+            marginTop: "16px"
+          }}>
+            <div style={{ marginBottom: "12px" }}>
+              <label style={{ 
+                display: "block", 
+                marginBottom: "8px", 
+                fontWeight: "600", 
+                color: "#111827",
+                fontSize: 13
+              }}>Calculator Type:</label>
+              <select 
+                value={calculatorType} 
+                onChange={(e) => {
+                  setCalculatorType(e.target.value);
+                  setSubType(Object.keys(calculatorTypes[e.target.value] || {})[0] || "");
+                  setShowResults(false);
+                }}
+                style={{ 
+                  padding: "10px 14px", 
+                  border: "1.5px solid #e2e8f0", 
+                  borderRadius: "8px", 
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  minWidth: "200px",
+                  background: "white",
+                  color: "#1e293b",
+                  outline: "none"
+                }}
+              >
+                <option value="emi">EMI Calculators</option>
+                <option value="eligibility">Eligibility Calculators</option>
+                <option value="prepayment">Prepayment Calculators</option>
+                <option value="investment">Investment Calculators</option>
+                <option value="gst">GST Calculator</option>
+              </select>
+            </div>
 
-      {/* Calculator Type Selector */}
-      <div style={{ 
-        padding: "0 32px", 
-        marginBottom: "40px",
-        display: "flex",
-        gap: "20px",
-        flexWrap: "wrap"
-      }}>
-        <div style={{ marginBottom: "20px" }}>
-          <label style={{ 
-            display: "block", 
-            marginBottom: "8px", 
-            fontWeight: "600", 
-            color: "#1a1a1a" 
-          }}>Calculator Type:</label>
-          <select 
-            value={calculatorType} 
-            onChange={(e) => {
-              setCalculatorType(e.target.value);
-              setSubType(Object.keys(calculatorTypes[e.target.value] || {})[0] || "");
-              setShowResults(false);
-            }}
-            style={{ 
-              padding: "12px 16px", 
-              border: "2px solid #e5e7eb", 
-              borderRadius: "8px", 
-              fontSize: "16px",
-              minWidth: "200px",
-              background: "white"
-            }}
-          >
-            <option value="emi">EMI Calculators</option>
-            <option value="eligibility">Eligibility Calculators</option>
-            <option value="prepayment">Prepayment Calculators</option>
-            <option value="investment">Investment Calculators</option>
-            <option value="gst">GST Calculator</option>
-          </select>
-        </div>
-
-        {calculatorType !== "gst" && (
-          <div style={{ marginBottom: "20px" }}>
-            <label style={{ 
-              display: "block", 
-              marginBottom: "8px", 
-              fontWeight: "600", 
-              color: "#1a1a1a" 
-            }}>Sub Type:</label>
-            <select 
-              value={subType} 
-              onChange={(e) => {
-                setSubType(e.target.value);
-                setShowResults(false);
-              }}
-              style={{ 
-                padding: "12px 16px", 
-                border: "2px solid #e5e7eb", 
-                borderRadius: "8px", 
-                fontSize: "16px",
-                minWidth: "200px",
-                background: "white"
-              }}
-            >
-              {Object.keys(calculatorTypes[calculatorType] || {}).map(key => (
-                <option key={key} value={key}>
-                  {calculatorTypes[calculatorType][key].name}
-                </option>
-              ))}
-            </select>
+            {calculatorType !== "gst" && (
+              <div style={{ marginBottom: "12px" }}>
+                <label style={{ 
+                  display: "block", 
+                  marginBottom: "8px", 
+                  fontWeight: "600", 
+                  color: "#111827",
+                  fontSize: 13
+                }}>Sub Type:</label>
+                <select 
+                  value={subType} 
+                  onChange={(e) => {
+                    setSubType(e.target.value);
+                    setShowResults(false);
+                  }}
+                  style={{ 
+                    padding: "10px 14px", 
+                    border: "1.5px solid #e2e8f0", 
+                    borderRadius: "8px", 
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    minWidth: "220px",
+                    background: "white",
+                    color: "#1e293b",
+                    outline: "none"
+                  }}
+                >
+                  {Object.keys(calculatorTypes[calculatorType] || {}).map(key => (
+                    <option key={key} value={key}>
+                      {calculatorTypes[calculatorType][key].name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </CalculatorHero>
+      </section>
 
-      {/* Calculator Form */}
+      {/* ── Screen 2: Interactive Calculator Interface ── */}
+      <section className="calc-section-screen">
+      <div className="calc-screen-body page-container-h">
       <div style={{ 
-        padding: "0 32px", 
         display: "grid", 
         gridTemplateColumns: "1fr 1fr", 
-        gap: "50px", 
-        alignItems: "start" 
+        gap: "clamp(20px, 2.5vw, 40px)", 
+        alignItems: "start",
+        width: "100%"
       }}>
         {/* Input Section */}
         <div style={{ 
@@ -998,13 +998,14 @@ export default function UniversalCalculator() {
           </div>
         )}
       </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: Amortization Schedule ── */}
       {/* Amortization Table */}
       {amortizationTable.length > 0 && (
-        <div style={{ 
-          padding: "0 32px", 
-          marginBottom: "60px" 
-        }}>
+        <section className="calc-section-screen">
+        <div className="page-container-h">
           <h3 style={{ 
             fontSize: "24px", 
             fontWeight: "700", 
@@ -1051,13 +1052,13 @@ export default function UniversalCalculator() {
             ))}
           </div>
         </div>
+        </section>
       )}
 
+      {/* ── Screen 3: Bank Offers ── */}
       {/* Bank Offers Section */}
-      <div style={{ 
-        padding: "0 32px", 
-        marginBottom: "60px" 
-      }}>
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         <h3 style={{ 
           fontSize: "24px", 
           fontWeight: "700", 
@@ -1116,7 +1117,11 @@ export default function UniversalCalculator() {
           ))}
         </div>
       </div>
+      </section>
 
+      {/* ── Screen 4: FAQs & Information ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
       {/* FAQ Section */}
       <div style={{ 
         padding: "0 32px", 
@@ -1213,6 +1218,8 @@ export default function UniversalCalculator() {
           </div>
         </div>
       </div>
+      </div>
+      </section>
 
       {/* Responsive Styles */}
       <style>{`
@@ -1250,6 +1257,6 @@ export default function UniversalCalculator() {
           }
         }
       `}</style>
-    </section>
+    </div>
   );
 }

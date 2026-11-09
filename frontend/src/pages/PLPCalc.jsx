@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const banks = [
   { name: "HDFC Bank", logo: "HDFC", rate: "10.50%", min: "10.75%", amount: "Rs.40L", color: "#004C8F", processing: "1%", tenure: "1-5 yrs", prepayment: "Nil after 12 months" },
@@ -13,7 +14,7 @@ const faqs = [
   { q: "How does prepayment affect my loan?", a: "Prepayment reduces your outstanding principal, which in turn reduces future interest calculations. This can either lower your EMI (if tenure remains same) or shorten your loan tenure (if EMI remains same)." },
   { q: "Are there prepayment charges?", a: "Most banks charge prepayment penalties, typically 2-5% of the prepaid amount, especially during the first 12-24 months. Some banks waive these charges after a certain period or for floating rate loans." },
   { q: "Should I reduce EMI or tenure?", a: "Reducing tenure is generally better as it saves more total interest. However, reducing EMI provides monthly cash flow relief. Choose based on your financial goals and cash flow needs." },
-  { q: "Is the UpnaLoan prepayment calculator accurate?", a: "Yes. Our calculator uses standard banking formulas and considers prepayment charges to give you accurate savings estimates. Results help you make informed prepayment decisions." },
+  { q: "Is the AvodahLoans prepayment calculator accurate?", a: "Yes. Our calculator uses standard banking formulas and considers prepayment charges to give you accurate savings estimates. Results help you make informed prepayment decisions." },
 ];
 
 function formatINR(val) {
@@ -157,67 +158,44 @@ export default function PLPCalc() {
   };
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>SAVE INTEREST</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800,  
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-              <span style={{ color: "#111827"}}>Personal Loan{" "}</span>
-             <span style={{ color: "#f97316"}}>Prepayment Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your savings on personal loan prepayment. Compare EMI reduction vs tenure reduction options and find the best prepayment strategy.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["Rs.40 Lakh", "Max Loan Amount"], ["10.50%", "Starting Interest Rate"], ["72 Months", "Max Tenure"], ["Nil Charges", "After 12 Months"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE TOOL"
+          badge2="SMART SAVINGS"
+          titleDark="Personal Loan"
+          titleAccent="Prepayment Calculator"
+          description="Calculate how much interest and tenure you can save by prepaying your personal loan. Compare reduce tenure vs reduce EMI options."
+          stats={[
+            ["Zero Lock-in", "Part Prepayment"],
+            ["Save Lakhs", "In Total Interest"],
+            ["Instant", "Savings Analysis"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "6px clamp(16px, 3vw, 32px)" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Personal Loan</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>Prepayment Calculator</span>
+              </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
-        {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+      {/* CALCULATOR SECTION */}
+      <div className="calc-screen-body page-container-h">
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 24px" }}>Loan Details</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 clamp(8px, 1.2vh, 14px)" }}>Loan Details</h2>
             <SliderInput label="Loan Amount" value={loanAmount} min={10000} max={5000000} step={10000}
               onChange={setLoanAmount} prefix="₹" formatFn={v => formatINR(v)} />
             <SliderInput label="Rate of Interest (p.a.)" value={interestRate} min={8} max={24} step={0.25}
@@ -338,7 +316,13 @@ export default function PLPCalc() {
           </div>
         </div>
 
-        {/* BANK OFFERS */}
+        </div>
+      </section>
+
+      {/* ── Screen 3: Bank Offers ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
+      {/* BANK OFFERS */}
         <div style={{ marginTop: 48 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
@@ -388,8 +372,14 @@ export default function PLPCalc() {
           </div>
         </div>
 
+              </div>
+      </section>
+
+      {/* ── Screen 4: Quick Links & FAQ ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* QUICK LINKS */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0, marginBottom: 32 }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 18px" }}>Quick Links</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
             {[
@@ -463,6 +453,8 @@ export default function PLPCalc() {
           </div>
         </div>
       </div>
+
+            </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

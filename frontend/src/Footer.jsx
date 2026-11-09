@@ -192,7 +192,7 @@ export default function Footer() {
             maxHeight: expanded ? `${fullHeight || 4000}px` : `${COLLAPSED_HEIGHT}px`,
             overflow: "hidden",
             transition: "max-height 0.6s ease-in-out",
-            maxWidth: "1400px",
+            maxWidth: "100%",
             margin: "0 auto",
           }}
         >
@@ -241,8 +241,8 @@ export default function Footer() {
       <div className="page-container-h" style={{ padding: "40px 32px 40px", borderTop: "1px solid rgba(249,115,22,0.2)" }}>
         
         {/* Logo */}
-        <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: 48, maxWidth:"1400px", margin: "0 auto 48px" }}>
-          <img src="/logo.png" alt="Upna Loan" style={{ height: 100, objectFit: "contain" }} />
+        <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: 48, maxWidth:"100%", margin: "0 auto 48px" }}>
+          <img src="/logo.png" alt="AvodahLoans" style={{ height: 100, objectFit: "contain" }} />
         </div>
 
         {/* 4 Column Grid */}
@@ -250,7 +250,7 @@ export default function Footer() {
          style={{ display: "grid",
            gridTemplateColumns: "repeat(4,1fr)", 
            gap: "80px", 
-           maxWidth: "1200px",
+           maxWidth: "100%",
            margin: "0 auto 50px",
            alignItems:"flex-start",
            paddingTop: "10px" }}>

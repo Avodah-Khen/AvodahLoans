@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const schemes = [
   { name: "Auto Choice - Life Cycle Fund", return: "10.50%", risk: "High", allocation: "Equity 75% + Debt 25%", color: "#2563eb" },
@@ -12,10 +13,9 @@ const schemes = [
 
 const faqs = [
   { q: "What is National Pension System (NPS)?", a: "NPS is a government-backed retirement savings scheme that helps you build a retirement corpus through regular contributions. It offers market-linked returns with tax benefits under Section 80CCD." },
-  { q: "How is NPS maturity amount calculated?", a: "NPS maturity is calculated using compound interest: Corpus = P × (1 + r)^n + Monthly Contribution × [((1 + r)^n - 1) / r], where P = initial contribution, r = expected return, n = years." },
   { q: "What happens at NPS maturity?", a: "At maturity (60 years), you must use 40% of corpus to buy annuity (pension) and can withdraw 60% tax-free. You can extend NPS till 70 years or exit early with conditions." },
   { q: "What are NPS tax benefits?", a: "NPS offers tax benefits: 80CCD(1) deduction up to Rs. 1.5 lakh, additional 80CCD(1B) deduction up to Rs. 50,000, and 60% of maturity amount is tax-free." },
-  { q: "Is UpnaLoan NPS calculator accurate?", a: "Yes. Our calculator uses standard NPS calculation formulas with realistic return expectations. Results are accurate for planning purposes but actual returns may vary." },
+  { q: "Is AvodahLoans NPS calculator accurate?", a: "Yes. Our calculator uses standard NPS calculation formulas with realistic return expectations. Results are accurate for planning purposes but actual returns may vary." },
 ];
 
 function formatINR(val) {
@@ -124,61 +124,39 @@ export default function NPSCalc() {
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>GOVT BACKED</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800, 
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-              <span style={{ color: "#111827"}}>NPS{" "}</span>
-             <span style={{ color:"#f97316"}}>Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your National Pension System retirement corpus and monthly pension. Plan your retirement with tax benefits and market-linked returns.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["60 Years", "Retirement Age"], ["12%", "Expected Return"], ["2 Lakh", "Tax Benefit"], ["Monthly", "Pension"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          badge1="FREE TOOL"
+          badge2="RETIREMENT PLANNER"
+          titleDark="National Pension System"
+          titleAccent="NPS Calculator"
+          description="Calculate your National Pension System retirement corpus and monthly pension. Plan your retirement with government-backed market returns."
+          stats={[
+            ["₹50,000", "Extra 80CCD(1B)"],
+            ["10-12%", "Historical Returns"],
+            ["60 Years", "Maturity Age"],
+            ["Monthly", "Pension Post 60"]
+          ]}
+        />
+      </section>
 
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
       {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "8px clamp(16px, 3vw, 32px)", width: "100%", boxSizing: "border-box" }}>
+        <div className="page-container-h">
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#94a3b8" }}>Investments</span>
         <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
         <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>NPS Calculator</span>
+        </div>
       </div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
+      <div className="calc-screen-body page-container-h">
         {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
@@ -262,9 +240,14 @@ export default function NPSCalc() {
             </div>
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: Scheme Options & Quick Links ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* SCHEMES */}
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
               <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: 0 }}>NPS Investment Options</h2>
@@ -329,9 +312,14 @@ export default function NPSCalc() {
             ))}
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 4: Information & FAQ ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* WHY CHOOSE */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0 }}>
           <div style={{ textAlign: "center", marginBottom: 28 }}>
             <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: "0 0 6px" }}>Why Invest in NPS?</h2>
             <p style={{ color: "#64748b", fontSize: 14, margin: 0 }}>Government-backed retirement solution with market-linked returns</p>
@@ -418,6 +406,7 @@ export default function NPSCalc() {
           </div>
         </div>
       </div>
+      </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

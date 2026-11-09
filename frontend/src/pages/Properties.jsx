@@ -14,21 +14,8 @@ const filters = ["All", "Residential", "Commercial", "Plot", "Industrial"];
 
 export default function Properties() {
   return (
-    <div
-      className="page-container-h"
-      style={{
-        padding: "60px 32px",
-        minHeight: "80vh",
-        background: "#fafaf8",
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-        }}
-      >
+    <div className="viewport-screen-start" style={{ background: "#fafaf8", boxSizing: "border-box", width: "100%" }}>
+      <div className="page-container-h" style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 32px 60px", boxSizing: "border-box", width: "100%" }}>
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
           <div

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Zap, TrendingDown, Lock, Handshake, BarChart2, CheckSquare, FileText, Rocket, MapPin, Building2, DollarSign, TrendingUp, Calendar, Star, Clock, CreditCard } from "lucide-react";
+import CalculatorHero from "../CalculatorHero";
 
 const banks = [
   { name: "HDFC Bank", logo: "HDFC", rate: "10.50%", min: "10.75%", amount: "₹40L", color: "#004C8F", processing: "1%", tenure: "1-5 yrs" },
@@ -10,10 +11,9 @@ const banks = [
 
 const faqs = [
   { q: "What is a Personal Loan EMI?", a: "A Personal Loan EMI (Equated Monthly Installment) is the fixed monthly payment you make to repay the loan principal along with applicable interest over a chosen tenure. It remains constant throughout the loan period." },
-  { q: "How is Personal Loan EMI calculated?", a: "EMI is calculated using the formula: EMI = [P × r × (1+r)^n] / [(1+r)^n – 1], where P = Principal amount, r = monthly interest rate, and n = total number of months." },
   { q: "What factors affect my Personal Loan EMI?", a: "Your EMI is primarily affected by three factors: the loan amount borrowed, the interest rate charged by the lender, and the repayment tenure you select. A higher loan amount or rate increases EMI, while a longer tenure reduces it." },
   { q: "Can I reduce my Personal Loan EMI?", a: "Yes — you can reduce your EMI by opting for a longer repayment tenure, maintaining a high credit score to negotiate lower interest rates, making partial prepayments to reduce principal, or refinancing with a lender offering better rates." },
-  { q: "Is the UpnaLoan EMI calculator accurate?", a: "Yes. Our calculator uses the standard reducing balance formula used by all RBI-regulated banks and NBFCs in India. Results are accurate to the rupee for the parameters you enter." },
+  { q: "Is the AvodahLoans EMI calculator accurate?", a: "Yes. Our calculator uses the standard reducing balance formula used by all RBI-regulated banks and NBFCs in India. Results are accurate to the rupee for the parameters you enter." },
 ];
 
 function formatINR(val) {
@@ -125,67 +125,43 @@ export default function PersonalLoanCalc() {
   };
 
   return (
-    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", minHeight: "100vh" }}>
+    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#f8fafc", width: "100%", boxSizing: "border-box" }}>
 
-      {/* HERO */}
-      <div style={{
-        background: "#ffffff",
-        padding: "clamp(40px, 8vw, 80px) clamp(16px, 5vw, 80px)",
-        position: "relative", 
-        overflow: "hidden",
-        borderBottom: "1px solid #f1f5f9"
-      }}>
-        <div style={{ position: "absolute", right: 80, top: 20, width: 260, height: 260, borderRadius: "50%", background: "rgba(59,130,246,0.08)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 140, top: 60, width: 120, height: 120, borderRadius: "50%", background: "rgba(59,130,246,0.05)", pointerEvents: "none" }} />
-        <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
-            <div style={{ background: "rgba(59,130,246,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#93c5fd", fontSize: 12, fontWeight: 600 }}>FREE TOOL</span>
-            </div>
-            <div style={{ background: "rgba(34,197,94,0.15)", borderRadius: 20, padding: "4px 12px" }}>
-              <span style={{ color: "#86efac", fontSize: 12, fontWeight: 600 }}>INSTANT RESULT</span>
-            </div>
-          </div>
-          <h1 style={{ 
-            fontSize: "clamp(32px, 6vw, 48px)", 
-            fontWeight: 800,  
-            lineHeight: 1.2, 
-            margin: "0 0 14px", 
-            letterSpacing: "-0.5px" }}>
-            <span style={{ color: "#111827"}}>Personal Loan{" "}</span> 
-            <span style={{ color: "#f97316"}}>EMI Calculator</span>
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "clamp(14px, 4vw, 16px)", lineHeight: 1.7, maxWidth: 580, margin: "0 0 24px" }}>
-            Calculate your monthly EMI instantly across India's top lenders. Compare rates, plan your budget, and apply for the best personal loan offer in seconds.
-          </p>
-          <div style={{ display: "flex", gap: "clamp(16px, 4vw, 28px)", flexWrap: "wrap" }}>
-            {[["₹40 Lakh", "Max Loan Amount"], ["10.50%", "Starting Interest Rate"], ["72 Months", "Max Tenure"], ["2 Min", "Instant Approval"]].map(([val, lbl]) => (
-              <div key={lbl} style={{ textAlign: "center" }}>
-                <div style={{ fontSize: "clamp(18px, 4vw, 22px)", fontWeight: 800, color: "#3b82f6", lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 11, color: "#64748b", marginTop: 3, fontWeight: 500 }}>{lbl}</div>
-              </div>
-            ))}
-          </div>
+      {/* ── Screen 1: Hero / Main Section ── */}
+      <section className="calc-hero-viewport">
+        <CalculatorHero
+          titleDark="Personal Loan"
+          titleAccent="EMI Calculator"
+          description="Calculate your monthly EMI instantly across India's top lenders. Compare rates, plan your budget, and apply for the best personal loan offer in seconds."
+          stats={[
+            ["₹40 Lakh", "Max Loan Amount"],
+            ["10.50%", "Starting Interest Rate"],
+            ["72 Months", "Max Tenure"],
+            ["2 Min", "Instant Approval"]
+          ]}
+        />
+      </section>
+
+      {/* ── Screen 2: Calculator Interface ── */}
+      <section className="calc-section-screen">
+      {/* BREADCRUMB */}
+      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "6px clamp(16px, 3vw, 32px)" }}>
+        <div className="page-container-h">
+          <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
+          <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
+          <span style={{ fontSize: 12, color: "#94a3b8" }}>Personal Loan</span>
+          <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
+          <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>EMI Calculator</span>
         </div>
       </div>
 
-      {/* BREADCRUMB */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #f1f5f9", padding: "10px clamp(16px, 5vw, 48px)" }}>
-        <span style={{ fontSize: 12, color: "#94a3b8" }}>Home</span>
-        <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
-        <span style={{ fontSize: 12, color: "#94a3b8" }}>Personal Loan</span>
-        <span style={{ fontSize: 12, color: "#cbd5e1", margin: "0 6px" }}>›</span>
-        <span style={{ fontSize: 12, color: "#2563eb", fontWeight: 500 }}>EMI Calculator</span>
-      </div>
-
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "clamp(32px, 6vw, 48px) clamp(16px, 5vw, 48px)" }}>
-
-        {/* CALCULATOR SECTION */}
-        <div style={{ display: "flex", gap: "clamp(24px, 4vw, 40px)", marginTop: 20, flexWrap: "wrap" }}>
+      {/* CALCULATOR SECTION */}
+      <div className="calc-screen-body page-container-h">
+        <div style={{ display: "flex", gap: "clamp(20px, 3vw, 36px)", marginTop: 0, padding: "clamp(6px, 1.2vh, 16px) 0", flexWrap: "wrap", alignItems: "center", width: "100%" }}>
 
           {/* LEFT: Inputs */}
           <div style={{ flex: "1 1 380px", ...card }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 24px" }}>Loan Details</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 clamp(8px, 1.2vh, 14px)" }}>Loan Details</h2>
             <SliderInput label="Loan Amount" value={loanAmount} min={10000} max={5000000} step={10000}
               onChange={setLoanAmount} prefix="₹" formatFn={v => formatINR(v)} />
             <SliderInput label="Rate of Interest (p.a.)" value={interestRate} min={8} max={24} step={0.25}
@@ -254,9 +230,14 @@ export default function PersonalLoanCalc() {
             </div>
           </div>
         </div>
+      </div>
+      </section>
 
+      {/* ── Screen 3: Amortization Schedule ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* AMORTIZATION TABLE */}
-        <div style={{ ...card, marginTop: 48, overflow: "hidden" }}>
+        <div style={{ ...card, marginTop: 0, overflow: "hidden" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: 0 }}>Amortization Schedule <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 400 }}>(First 12 Months)</span></h2>
           </div>
@@ -286,8 +267,14 @@ export default function PersonalLoanCalc() {
           </div>
         </div>
 
+      </div>
+      </section>
+
+      {/* ── Screen 4: Bank Offers ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* BANK OFFERS */}
-        <div style={{ marginTop: 48 }}>
+        <div style={{ marginTop: 0 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20, flexWrap: "wrap", gap: 12 }}>
             <div>
               <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: 0 }}>Best Personal Loan Offers</h2>
@@ -336,8 +323,14 @@ export default function PersonalLoanCalc() {
           </div>
         </div>
 
+      </div>
+      </section>
+
+      {/* ── Screen 5: Quick Links & Why Choose Us ── */}
+      <section className="calc-section-screen">
+      <div className="page-container-h">
         {/* QUICK LINKS */}
-        <div style={{ ...card, marginTop: 48 }}>
+        <div style={{ ...card, marginTop: 0, marginBottom: 32 }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: "#1e293b", margin: "0 0 18px" }}>Quick Links</h2>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 12 }}>
             {[
@@ -367,7 +360,7 @@ export default function PersonalLoanCalc() {
         {/* WHY CHOOSE */}
         <div style={{ ...card, marginTop: 48 }}>
           <div style={{ textAlign: "center", marginBottom: 28 }}>
-            <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: "0 0 6px" }}>Why Choose UpnaLoan?</h2>
+            <h2 style={{ fontSize: "clamp(20px, 5vw, 22px)", fontWeight: 800, color: "#1e293b", margin: "0 0 6px" }}>Why Choose AvodahLoans?</h2>
             <p style={{ color: "#64748b", fontSize: 14, margin: 0 }}>Trusted by 5 lakh+ borrowers across India</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "clamp(16px, 3vw, 24px)" }}>
@@ -388,13 +381,19 @@ export default function PersonalLoanCalc() {
           </div>
         </div>
 
+      </div>
+      </section>
+
+      {/* ── Screen 6: Information & Frequently Asked Questions ── */}
+      <section className="calc-section-screen" style={{ minHeight: "calc(100vh - 95px)", justifyContent: "flex-start" }}>
+      <div className="page-container-h">
         {/* INFO SECTIONS */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(20px, 4vw, 32px)", marginTop: 48 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(20px, 4vw, 32px)", marginTop: 0 }}>
           {[
             ["What is Personal Loan EMI?", "EMI stands for Equated Monthly Installment — a fixed monthly payment comprising principal repayment and interest. It helps borrowers plan structured repayments over a chosen tenure, making loan management predictable and hassle-free."],
             ["What is a Personal Loan EMI Calculator?", "A personal loan EMI calculator is a free online tool that instantly estimates your monthly installment based on your loan amount, interest rate, and tenure. It removes manual calculation errors and saves significant time."],
             ["What is an Amortization Schedule?", "An amortization schedule is a detailed month-wise table showing the breakup of each EMI into principal and interest components, along with the outstanding loan balance. It helps track how your loan reduces over time."],
-            ["Why Use UpnaLoan's EMI Calculator?", "Our calculator supports 50+ lenders, offers real-time comparison, and instantly computes total interest and payable amounts. It's faster, more accurate, and more insightful than any manual calculation method."],
+            ["Why Use AvodahLoans's EMI Calculator?", "Our calculator supports 50+ lenders, offers real-time comparison, and instantly computes total interest and payable amounts. It's faster, more accurate, and more insightful than any manual calculation method."],
             ["How to Use the EMI Calculator?", "Enter your desired loan amount using the slider or text input. Select the applicable interest rate. Choose your preferred repayment tenure. The calculator instantly shows your EMI, total interest, and total payable amount."],
             ["Compare EMIs Across Banks & NBFCs", "Different lenders offer varying rates. HDFC starts at 10.50%, ICICI at 10.75%, SBI at 11.00%, and Bajaj Finserv at 11.99%. Using our calculator helps you identify the most cost-effective lender before applying."],
           ].map(([title, body]) => (
@@ -485,6 +484,7 @@ export default function PersonalLoanCalc() {
           </div>
         </div>
       </div>
+      </section>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

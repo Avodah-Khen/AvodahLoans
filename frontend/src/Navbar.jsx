@@ -28,13 +28,16 @@ export default function Navbar() {
         justifyContent: "space-between",
         padding: "0 32px",
         height: 65,
-        maxWidth: "100%",
+        maxWidth: 1280,
+        margin: "0 auto",
+        boxSizing: "border-box",
+        width: "100%",
       }} className="nav-top-bar page-container-h">
         {/* Logo */}
         <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img
             src="/logo.png"
-            alt="Upna Loan"
+            alt="AvodahLoans"
             style={{ height: 100, objectFit: "contain" }}
           />
         </Link>
@@ -150,9 +153,9 @@ export default function Navbar() {
         whiteSpace: "nowrap"
       }}>
        <span style={{ display: "inline-block", animation: "ticker 28s linear infinite" }}>
-        Looking after your interests • Quick and Easy Loans • Upna Loan &nbsp;&nbsp;&nbsp;&nbsp;
-        Looking after your interests • Quick and Easy Loans • Upna Loan &nbsp;&nbsp;&nbsp;&nbsp;
-        Looking after your interests • Quick and Easy Loans • Upna Loan &nbsp;&nbsp;&nbsp;&nbsp;
+        Looking after your interests • Quick and Easy Loans • AvodahLoans &nbsp;&nbsp;&nbsp;&nbsp;
+        Looking after your interests • Quick and Easy Loans • AvodahLoans &nbsp;&nbsp;&nbsp;&nbsp;
+        Looking after your interests • Quick and Easy Loans • AvodahLoans &nbsp;&nbsp;&nbsp;&nbsp;
       </span>
       </div>
 
